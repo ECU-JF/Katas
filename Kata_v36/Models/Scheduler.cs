@@ -36,6 +36,7 @@ namespace Scheduler.Models
 
         public void RandomlyFillUpMeetings()
         {
+            
             foreach (CaseWorker caseWorker in CaseWorkers)
             {
                 foreach (Meeting meeting in caseWorker.Meetings)
@@ -45,8 +46,11 @@ namespace Scheduler.Models
 
                     if (meeting.Applicant == null)
                     {
-                        int randomIndex = 0; //TODO detta är inte slumpat.
+                        Random rand = new Random();
 
+                        int randomIndex = rand.Next(0, UnassignedApplicants.Count); 
+                        //TODO detta är inte slumpat.
+                        
                         meeting.Applicant = UnassignedApplicants[randomIndex];
                         UnassignedApplicants.RemoveAt(randomIndex);
                     }
